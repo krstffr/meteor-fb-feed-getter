@@ -3,6 +3,7 @@
 This is a package for getting the latest posts from a Facebook Page. This is basically how you do it:
 
 1. Install [Meteor](http://www.meteor.com) and [Meteorite](https://github.com/oortcloud/meteorite/) if you haven't already.
+1. Add the http package (`meteor add http`)
 1. Run `mrt add fbFeedGetter` in your meteor project. This package should be installed.
 1. Create a new Facebook app at [developers.facebook.com](http://developers.facebook.com) (or use one you already have). Take note of the app's `client_id` and `client_secret`.
 1. Do the following on the server of your app:
