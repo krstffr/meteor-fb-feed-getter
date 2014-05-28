@@ -3,6 +3,6 @@
   "description": "A tiny meteor package for getting the news feed from a Facebook Page. (Could do much more in time.)",
   "homepage": "https://github.com/krstffr/fbFeedGetter",
   "author": "Kristoffer Klintberg <krstffr@gmail.com>",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "git": "https://github.com/krstffr/fbFeedGetter.git"
 }
