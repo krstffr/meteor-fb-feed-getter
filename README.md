@@ -1,4 +1,8 @@
-# Get the news feed from a Facebook to a Meteor Collection.
+# fbFeedGetter
+
+Get the news feed from a Facebook page to a Meteor Collection.
+
+## Basic usage
 
 This is a package for getting the latest posts from a Facebook Page. This is basically how you do it:
 
@@ -24,5 +28,16 @@ This is a package for getting the latest posts from a Facebook Page. This is bas
   1. Now your Meteor.Collection will be filled with the latest posts from the pageId you provided every `timeInMinutes` minutes!
 
 Oh, use this responsibly! It may be against Facebook's terms in some way, I'm not sure.
+
+## Filter posts based on key
+
+Maybe you only want the posts which have the "message" key (cause you don't want to store comments and such).
+Then just add "message" to the `fbPostRequiredFields` array, like this:  
+`fbFeedGetter.fbPostRequiredFields = ['message'];`
+
+And you can of course add how many keys as you'd like to this array.
+`fbFeedGetter.fbPostRequiredFields = ['message', 'picture', 'likes'];`
+
+And this will make only posts which contain these keys be saved.
 
 **Please let me know of any bugs/improvements.**
