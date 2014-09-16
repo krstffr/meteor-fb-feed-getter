@@ -8,7 +8,7 @@ This is a package for getting the latest posts from a Facebook Page. This is bas
 
 1. Install [Meteor](http://www.meteor.com) and [Meteorite](https://github.com/oortcloud/meteorite/) if you haven't already.
 1. Add the http package (`meteor add http`)
-1. Run `mrt add fbFeedGetter` in your meteor project. This package should be installed.
+1. Run `mrt add facebook-feed-getter` in your meteor project. This package should be installed.
 1. Create a new Facebook app at [developers.facebook.com](http://developers.facebook.com) (or use one you already have). Take note of the app's `client_id` and `client_secret`.
 1. Do the following on the server of your app:
   1. Create a Collection where you want the posts to be stored. Or use one you already have.  
@@ -29,6 +29,7 @@ This is a package for getting the latest posts from a Facebook Page. This is bas
 
 Oh, use this responsibly! It may be against Facebook's terms in some way, I'm not sure.
 
+
 ## Filter posts based on key
 
 Maybe you only want the posts which have the "message" key (cause you don't want to store comments and such).
@@ -39,5 +40,45 @@ And you can of course add how many keys as you'd like to this array.
 `fbFeedGetter.fbPostRequiredFields = ['message', 'picture', 'likes'];`
 
 And this will make only posts which contain these keys be saved.
+
+
+## Run one or more transform methods on the resulted posts
+
+Maybe you want to do something to the posts which are returned from the Facebook API before you save them to the DB? Just pass the callback method to the addTransformMethodForRetrievedObjects() method. See below:
+
+```javascript
+
+// This method will run on each post which is returned from the API
+// and will attach the actual image URL to each post (as it's not actually
+// stored in the original object).
+// Remember: you must return the modified (or original) object.
+fbFeedGetter.addTransformMethodForRetrievedObjects(function ( fbObject ) {
+
+  // If the fbObjet has no object_id, just return it
+  if (!fbObject.object_id)
+    return fbObject;
+  
+  // This is the HTTP request we use to get the response
+  var imgResponse = HTTP.get( 'https://graph.facebook.com/v2.0/'+fbObject.object_id+'/picture',
+    {
+      params: {
+        // Redirect has to be false, else the actual FILE will be return
+        redirect: false,
+        access_token: access_token
+      }
+    });
+  
+  // Set the actualPicture to the new URL
+  fbObject.actualPicture = imgResponse.data.data.url;
+
+  // Return it!
+  return fbObject;
+
+});
+
+```
+
+
+## Bugs?
 
 **Please let me know of any bugs/improvements.**
