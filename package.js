@@ -7,6 +7,8 @@ Package.describe({
 
 Package.onUse(function (api) {
 
+	api.versionsFrom("METEOR@0.9.0");
+
   api.use(['underscore', 'http'], 'server');
 
   api.add_files('fb-feed-getter.js', 'server');
