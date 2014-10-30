@@ -7,7 +7,7 @@ Package.describe({
 
 Package.onUse(function (api) {
 
-  api.use('underscore', 'HTTP', 'server');
+  api.use(['underscore', 'http'], 'server');
 
   api.add_files('fb-feed-getter.js', 'server');
 
