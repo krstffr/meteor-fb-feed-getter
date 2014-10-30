@@ -1,8 +1,0 @@
-{
-  "name": "facebook-feed-getter",
-  "description": "A tiny meteor package for getting the news feed from a Facebook Page. (Could do much more in time.)",
-  "homepage": "https://github.com/krstffr/meteor-facebook-feed-getter",
-  "author": "Kristoffer Klintberg <krstffr@gmail.com>",
-  "version": "1.0.1",
-  "git": "https://github.com/krstffr/meteor-facebook-feed-getter.git"
-}
