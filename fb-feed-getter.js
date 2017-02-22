@@ -22,7 +22,7 @@ FacebookFeedGetter = function () {
 	 * @param {Meteor Collection} meteorCollection
 	 * @return {Boolean} that.access_token !== false && that.meteorCollection !== false
 	 */
-	that.setup = function (access_token, meteorCollection) {
+	that.setup = function (access_token, meteorCollection, pageId) {
 
 		// Make sure we have the HTTP package
 		if (!HTTP) throw new Error("You need to add the HTTP package! Run 'meteor add http' please.");
@@ -37,7 +37,7 @@ FacebookFeedGetter = function () {
 		that.meteorCollection = meteorCollection;
 
 		// Get the latest updated doc and set the latestUpdate time to it's update_time
-		var latestDoc = that.meteorCollection.findOne({}, { sort: { 'updated_time': -1 } });
+		var latestDoc = that.meteorCollection.findOne({ 'from.id': pageId }, { sort: { 'updated_time': -1 } });
 		if (latestDoc)
 			that.latestUpdate = latestDoc.updated_time;
 
