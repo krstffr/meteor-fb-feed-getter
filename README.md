@@ -1,4 +1,4 @@
-# fbFeedGetter
+# DEPRECATED: fbFeedGetter
 
 Get the news feed from a Facebook page to a Meteor Collection.
 
